@@ -65,13 +65,15 @@ const NavMenu = styled.div`
     cursor: pointer;
     
     img{
-      height: 20px;
+      height: 23px;
+      margin-top:6px;
     }
 
     span{
-      font-size: 13px;
+      font-size: 14px;
       letter-spacing: 1.42px;
       position: relative;
+      top: -5px;
 
       &: after{
         content: "";
