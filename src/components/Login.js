@@ -10,6 +10,7 @@ function Login() {
         <SignUp>GET THERE ALL</SignUp>
         <Description>
           Get Premier Access to top Shows and movies with a Disney+ Subcription just @499 per month. enjoy and cheers❤️🎉✌️
+          Made By SRISANTH SETH
         </Description>
         <CTALogoTwo src="/images/cta-logo-two.png"/>
       </CTA>

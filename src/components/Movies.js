@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 function Movies() {
 
   const movies = useSelector(selectMovies);
-  // console.log("thi is movie",movies);
   
   return (
     <Container>
