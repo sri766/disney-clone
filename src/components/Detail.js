@@ -24,10 +24,9 @@ function Detail() {
 
       }
     })
-  },[])
+  }, [])
 
-
-  // console.log('this is ',movie.backgroundImg)
+  console.log('this is ',movie)
 
   return (
     <Container>
@@ -35,7 +34,7 @@ function Detail() {
         <img src={movie.backgroundImg} alt="" />
       </Background>
       <ImageTitle>
-        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78" />
+        <img src={movie.titleImg} alt="" />
       </ImageTitle>
       <Controls>
         <Playbutton>
@@ -54,10 +53,10 @@ function Detail() {
         </GroupWatchButton>
       </Controls>
       <SubTitle>
-        2018 . 7m . Family, Fantasy, kids , Animation
+        {movie.SubTitle}
       </SubTitle>
       <Description>
-        A Chinese mom who's sad when her grown son leaves home gets another chance <br></br>at motherhood when one of her dumplingd spring to life. 
+        {movie.description} 
       </Description>
     </Container>
   )

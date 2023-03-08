@@ -5,7 +5,7 @@ import Viewer from './Viewer'
 import Movies from './Movies'
 import db from '../Firebase'
 import { useDispatch } from 'react-redux'
-import { setMovies } from '../features/counter/movies/movieSlice'
+import { setMovies } from '../features/movies/movieSlice'
 
 function Home() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function Home() {
       })
       dispatch(setMovies(tempMovies));
     })
-  },[])
+  })
 
   
   return (
