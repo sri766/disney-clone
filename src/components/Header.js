@@ -9,6 +9,7 @@ import {useHistory} from 'react-router-dom';
 import {selectUserName
   ,selectUserEmail
   ,selectUserPhoto,
+  setSignOutState,
   setUserLoginDetails} from '../features/user/userSlice'
 
 
@@ -28,16 +29,6 @@ function Header(){
         })
     );
   };
-
-  const handleAuth = () =>{
-    auth.signInWithPopup(provider).then((result)=>{
-      console.log(result);
-      setUser(result.user);
-    }).catch((error)=>{
-      alert(error.message);
-    })
-  }
-  
   useEffect(() =>{
     if(userName){
       auth.onAuthStateChanged(async (user) =>{
@@ -47,10 +38,30 @@ function Header(){
         }
       });
     }
-    else{
-      
-    }
   },[userName]);
+
+  const handleAuth = () =>{
+    if(!userName){
+      auth
+      .signInWithPopup(provider)
+      .then((result)=>{
+          setUser(result.user);
+      }).catch((error)=>{
+        alert(error.message);
+      })
+    }
+    else if(userName){
+      auth
+      .signOut()
+      .then(()=>{
+        dispatch(setSignOutState());
+        history.push('/');
+      }).catch((err)=>{
+        alert(err.message);
+      })
+    }
+  }
+  
 
 
   return (
@@ -91,7 +102,7 @@ function Header(){
         
      </NavMenu>
      <SignOut>
-        <UserImg src="/images\unnamed.jpg" />
+        <UserImg src="/images/unnamed.jpg" />
         <DropDown>
           <span onClick={handleAuth}>Sign Out</span>
         </DropDown>
@@ -126,9 +137,9 @@ const NavMenu = styled.div`
   display: flex;
   flex: 1;
   margin-left: 25px;
-  align-item: center;
+  align-items: center;
   a{
-    diplay: flex;
+    display: flex;
     align-items: center;
     padding: 0px 12px;
     cursor: pointer;
@@ -154,7 +165,7 @@ const NavMenu = styled.div`
         bottom: -6px;
         transform-origin: left center;
         opacity: 0;
-        transistion: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;    //review it again
+        transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;    //review it again
         transform: scaleX(0);
       }
     }
@@ -191,23 +202,27 @@ const LoginBtn = styled.a`
   }
 `
 
-
 const DropDown = styled.div`
-position: absolute;
-top: 48px;
-padding: 0px 12px 0px 12px;
-width: 100px;
-background: rgb(19,19,19);
-border: 2px solid rgb(249,249,249,0.6);
-border-radius: 4px;
-margin-left: 320px;
-opacity: 0;
-font-size: 14px;
-letter-spacing: 2px;
-z-index: 1;
-
-`
-const SignOut = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 50px;
+  padding: 6px 0px 6px 0px;
+  text-align: center;
+  width: 100px;
+  height:30px;
+  background: rgb(19, 19, 19);
+  border: 2px solid rgb(249, 249, 249, 0.6);
+  border-radius: 4px;
+  margin-left: 320px;
+  opacity: 0;
+  font-size: 14px;
+  letter-spacing: 2px;
+  z-index: 10; // Add this line to set a higher z-index value;
+  `
+  
+  
+  
+  const SignOut = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
@@ -219,6 +234,6 @@ const SignOut = styled.div`
       transition-duration: 1s;
       z-index: 1;
     }
-  }
+}
 
 `

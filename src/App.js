@@ -7,7 +7,7 @@ import Login from './components/Login';
 
 
 import {
-  BrowserRouter as Router,Routes,Route,Link
+  BrowserRouter as Router,Switch,Route,Link
 } from "react-router-dom";
 
 function App() {
@@ -16,11 +16,11 @@ function App() {
       <Router>
         <Header/>
         
-        <Routes>
-          <Route exact path='/'><Login /></Route>
-          <Route path='/home'><Home /></Route>
-          <Route path="/detail"><Detail /></Route>
-        </Routes>
+        <Switch>
+          <Route exact path='/' component={Login}/>
+          <Route path='/home' component={Home}/>
+          <Route path="/detail/:id" component={Detail}/>
+        </Switch>
 
       </Router>
     </div>

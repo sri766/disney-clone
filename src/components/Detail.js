@@ -2,7 +2,7 @@ import React , { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import '../../src/App.css';
-import db from '../Firebase'
+import db from '../Firebase';
 
 function Detail() {
   const { id } = useParams();
@@ -11,21 +11,22 @@ function Detail() {
 
   useEffect(()=>{
     //Grab the movie into from DB
-    db.collection("movies")
-    .doc(id)
+    db.collection("movies").doc(id)
     .get()
     .then((doc)=>{
       if(doc.exists){
         //save the movie data
-        setMovie(doc.data());
+        setMovie(doc.data()); 
       }
       else{
-        //redirect home page
-
+ 
+        console.log('no such document in firebase')
       }
+    }).catch((error)=>{
+      console.log('Error getting document:',error)
     })
-    console.log('this is ',movie)
-  }, [])
+    
+  }, [id])
 
 
   return (
