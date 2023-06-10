@@ -10,7 +10,7 @@ function ImageSlider() {
     let Settings ={
         dots: true,
         infinite: true,
-        speed: 500,
+        speed: 700,
         slideToShow: 1,
         slideToScroll: 1,
         autoplay: true,

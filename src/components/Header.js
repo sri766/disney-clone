@@ -1,46 +1,67 @@
 import styled from 'styled-components';
 import { provider, auth } from '../Firebase';
-import React from 'react';
-// import {useDispatch, useSelector} from 'react-redux';
-// import Login from './Login';
-// import {useHistory} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import Home from './Home';
+import Login from './Login';
+import {useHistory} from 'react-router-dom';
 
-// import {selectUserName
-//   ,selectUserEmail
-//   ,selectUserPhoto,
-//   setUserLoginDetails} from '../features/user/userSlice'
+import {selectUserName
+  ,selectUserEmail
+  ,selectUserPhoto,
+  setUserLoginDetails} from '../features/user/userSlice'
 
 
 function Header(){
-  // const dispatch = useDispatch();
-  // const history = useHistory();
-  // const userName = useSelector(selectUserName);
-  // const userPhoto = useSelector(selectUserPhoto);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const userName = useSelector(selectUserName);
+  const userPhoto = useSelector(selectUserPhoto);
 
+  const setUser =(user)=>{
+    dispatch(
+      setUserLoginDetails(
+        {
+          name: user.displayName,
+          email: user.email,
+          photo: user.photoURL,
+        })
+    );
+  };
 
   const handleAuth = () =>{
     auth.signInWithPopup(provider).then((result)=>{
       console.log(result);
-      // setUser(result.user);
+      setUser(result.user);
     }).catch((error)=>{
       alert(error.message);
     })
-
-  // const setUser =(user)=>{
-  //   dispatch(
-  //     setUserLoginDetails(
-  //       user.displayName,
-  //       user.email,
-  //       user.photoURL,
-
-  //     )
-  //   );
-  // };
-
   }
+  
+  useEffect(() =>{
+    if(userName){
+      auth.onAuthStateChanged(async (user) =>{
+        if(user) {
+          setUser(user)
+          history.push('/home')
+        }
+      });
+    }
+    else{
+      
+    }
+  },[userName]);
+
+
   return (
     <Nav>
        <Logo src="/images/logo.svg" alt="" />
+       {
+        !userName ?
+        (
+          <div className="btn-container"><LoginBtn onClick={handleAuth}>Login</LoginBtn></div>
+        ):(
+        <>
         <NavMenu>
         <a>
           <img src="/images/home-icon.svg" alt=""/>
@@ -66,11 +87,20 @@ function Header(){
           <img src="/images/series-icon.svg" alt=""/>
           <span>SERIES</span>
         </a>
+        
+        
      </NavMenu>
-     <LoginBtn onClick={handleAuth}>Login</LoginBtn>
-       
-    {/* <UserImg src="/images\unnamed.jpg" /> */}
-    </Nav>
+     <SignOut>
+        <UserImg src="/images\unnamed.jpg" />
+        <DropDown>
+          <span onClick={handleAuth}>Sign Out</span>
+        </DropDown>
+     </SignOut>
+
+    </>
+    )}
+      
+    </Nav>      
   )
 }
 
@@ -82,6 +112,7 @@ const Nav = styled.div`
   height: 70px;
   background: #090b13;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 0 36px;
   overflow: hidden;
@@ -140,7 +171,8 @@ const NavMenu = styled.div`
 const UserImg = styled.img`
   height: 40px;
   width:40px;
-  border-radius: 100%
+  border-radius: 100%;
+  margin-left: 366px;
 `
 
 const LoginBtn = styled.a`
@@ -151,9 +183,42 @@ const LoginBtn = styled.a`
   border: 1px solid #f9f9f9;
   border-radius: 4px;
   cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
   &:hover{
     background: white;
     color: black;
-
   }
+`
+
+
+const DropDown = styled.div`
+position: absolute;
+top: 48px;
+padding: 0px 12px 0px 12px;
+width: 100px;
+background: rgb(19,19,19);
+border: 2px solid rgb(249,249,249,0.6);
+border-radius: 4px;
+margin-left: 320px;
+opacity: 0;
+font-size: 14px;
+letter-spacing: 2px;
+z-index: 1;
+
+`
+const SignOut = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-item: center;
+  cursor: pointer;
+  &:hover{
+    ${DropDown}{
+      opacity: 1;
+      transition-duration: 1s;
+      z-index: 1;
+    }
+  }
+
 `

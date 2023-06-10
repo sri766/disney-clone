@@ -24,9 +24,9 @@ function Detail() {
 
       }
     })
+    console.log('this is ',movie)
   }, [])
 
-  console.log('this is ',movie)
 
   return (
     <Container>
