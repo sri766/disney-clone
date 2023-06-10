@@ -32,7 +32,7 @@ function Detail() {
   return (
     <Container>
       <Background>
-        <img src={movie.backgroundImg} alt="" />
+        <img src={movie.backgroundImg} alt={movie.title} />
       </Background>
       <ImageTitle>
         <img src={movie.titleImg} alt="" />
