@@ -17,6 +17,7 @@ function Detail() {
       if(doc.exists){
         //save the movie data
         setMovie(doc.data()); 
+        // console.log(doc.data());
       }
       else{
  
@@ -31,37 +32,42 @@ function Detail() {
 
   return (
     <Container>
-      <Background>
-        <img src={movie.backgroundImg} alt={movie.title} />
-      </Background>
-      <ImageTitle>
-        <img src={movie.titleImg} alt="" />
-      </ImageTitle>
-      <Controls>
-        <Playbutton>
-            <img src="/images/play-icon-black.png" alt=""/>
-            <span>PLAY</span>
-        </Playbutton>
-        <TrailerButton>
-            <img src="/images/play-icon-white.png" alt=""/>
-            <span>Trailer</span>
-        </TrailerButton>
-        <AddButton>
-          <span>+</span>
-        </AddButton>
-        <GroupWatchButton>
-          <img src="/images/group-icon.png" alt="" />
-        </GroupWatchButton>
-      </Controls>
-      <SubTitle>
-        {movie.SubTitle}
-      </SubTitle>
-      <Description>
-        {movie.description} 
-      </Description>
+      {movie ? ( // Check if movie data is available
+        <>
+          <Background>
+            <img src={movie.backgroundImg} alt={movie.title} />
+          </Background>
+          <ImageTitle>
+            <img src={movie.titleImg} alt="" />
+          </ImageTitle>
+          <Controls>
+            <Playbutton>
+                <img src="/images/play-icon-black.png" alt=""/>
+                <span>PLAY</span>
+            </Playbutton>
+            <TrailerButton>
+                <img src="/images/play-icon-white.png" alt=""/>
+                <span>Trailer</span>
+            </TrailerButton>
+            <AddButton>
+              <span>+</span>
+            </AddButton>
+            <GroupWatchButton>
+              <img src="/images/group-icon.png" alt="" />
+            </GroupWatchButton>
+          </Controls>
+          <SubTitle>
+            {movie.SubTitle}
+          </SubTitle>
+          <Description>
+            {movie.description} 
+          </Description>
+        </>
+      ) : (
+        <h1>Loading...</h1>
+      )}
     </Container>
-  )
-}
+  );}
 
 export default Detail
 
