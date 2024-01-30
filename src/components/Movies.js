@@ -11,15 +11,14 @@ function Movies() {
   return (
     <Container>
       <h4>Recommended for You</h4>
-
       <Content>
         { movies && 
             movies.map((movie)=>(
-            <Wrap key={movie.id}>
-              <Link to={`/detail/${movie.id}`}>
-                <img src={movie.cardImg} alt=""/>
-              </Link>
-            </Wrap>
+              <Wrap key={movie.id}>
+                <Link to={`/detail/${movie.id}`}>
+                  <img src={movie.cardImg} alt=""/>
+                </Link>
+              </Wrap>
           ))
         }
             
