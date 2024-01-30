@@ -135,7 +135,7 @@ const Playbutton = styled.button`
 const TrailerButton = styled(Playbutton)`
     
     background: rgb(0,0,0,0.3);
-    border: 1px solid rgb(249,249,249);
+    border: 2.5px solid rgb(249,249,249);
 
     span{
         color:rgb(249,249,249);
@@ -181,6 +181,8 @@ const SubTitle = styled.div`
 
 const Description = styled.div`
     line-height: 1.4;
-    font-size: 20px;
+    font-size: 25px;
     margin-top: 20px;
+    width: 70%;
+    text-align: justify;
 `

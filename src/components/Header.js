@@ -17,6 +17,7 @@ function Header(){
   const dispatch = useDispatch();
   const history = useHistory();
   const userName = useSelector(selectUserName);
+  const userEmail  = useSelector(selectUserEmail);
   const userPhoto = useSelector(selectUserPhoto);
 
   const setUser =(user)=>{
@@ -145,7 +146,7 @@ const NavMenu = styled.div`
     cursor: pointer;
     
     img{
-      height: 23px;
+      height: 28px;
       margin-top:6px;
     }
 
@@ -153,7 +154,7 @@ const NavMenu = styled.div`
       font-size: 14px;
       letter-spacing: 1.42px;
       position: relative;
-      top: -5px;
+      top: 5px;
 
       &: after{
         content: "";
@@ -206,7 +207,7 @@ const DropDown = styled.div`
   position: absolute;
   top: 12px;
   right: 50px;
-  padding: 6px 0px 6px 0px;
+  // padding: 6px 0px 6px 0px;
   text-align: center;
   width: 100px;
   height:30px;

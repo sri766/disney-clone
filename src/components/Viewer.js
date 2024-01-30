@@ -61,7 +61,7 @@ const Viewers = (props) => {
     overflow: hidden;
     position: relative;
     transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
-    border: 3px solid rgba(249, 249, 249, 0.1);
+    border: 4px solid rgba(249, 249, 249, 0.1);
     img {
       inset: 0px;
       display: block;
@@ -77,8 +77,9 @@ const Viewers = (props) => {
     video {
       width: 100%;
       height: 100%;
+      obejct-fit: cover;
       position: absolute;
-      top: 0px;
+      top: 0;
       opacity: 0;
       z-index: 0;
     }
