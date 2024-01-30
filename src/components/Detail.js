@@ -57,7 +57,7 @@ function Detail() {
             </GroupWatchButton>
           </Controls>
           <SubTitle>
-            {movie.SubTitle}
+            {movie.subTitle}
           </SubTitle>
           <Description>
             {movie.description} 
