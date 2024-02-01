@@ -1,0 +1,36 @@
+[debug] [2024-02-01T15:38:24.358Z] ----------------------------------------------------------------------
+[debug] [2024-02-01T15:38:24.361Z] Command:       /home/linuxbrew/.linuxbrew/Cellar/node/21.5.0/bin/node /home/linuxbrew/.linuxbrew/bin/firebase deploy
+[debug] [2024-02-01T15:38:24.361Z] CLI Version:   13.1.0
+[debug] [2024-02-01T15:38:24.362Z] Platform:      linux
+[debug] [2024-02-01T15:38:24.362Z] Node Version:  v21.5.0
+[debug] [2024-02-01T15:38:24.362Z] Time:          Thu Feb 01 2024 21:08:24 GMT+0530 (India Standard Time)
+[debug] [2024-02-01T15:38:24.362Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-02-01T15:38:24.365Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-02-01T15:38:24.478Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-02-01T15:38:24.478Z] > authorizing via signed-in user (srisanthseth28@gmail.com)
+[debug] [2024-02-01T15:38:24.478Z] [iam] checking project todo-3ce31 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-02-01T15:38:24.479Z] > refreshing access token with scopes: []
+[debug] [2024-02-01T15:38:24.480Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-02-01T15:38:24.480Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-02-01T15:38:24.835Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2024-02-01T15:38:24.835Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-02-01T15:38:24.835Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/todo-3ce31:testIamPermissions [none]
+[debug] [2024-02-01T15:38:24.835Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/todo-3ce31:testIamPermissions x-goog-quota-user=projects/todo-3ce31
+[debug] [2024-02-01T15:38:24.836Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/todo-3ce31:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-02-01T15:38:25.137Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-02-01T15:38:25.137Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2024-02-01T15:38:26.540Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/todo-3ce31:testIamPermissions 401
+[debug] [2024-02-01T15:38:26.541Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/todo-3ce31:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions","service":"cloudresourcemanager.googleapis.com"}}]}}
+[debug] [2024-02-01T15:38:26.542Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2024-02-01T15:38:26.542Z] > refreshing access token with scopes: []
+[debug] [2024-02-01T15:38:26.543Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-02-01T15:38:26.543Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-02-01T15:38:26.680Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2024-02-01T15:38:26.680Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-02-01T15:38:26.680Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/todo-3ce31 [none]
+[debug] [2024-02-01T15:38:27.154Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/todo-3ce31 401
+[debug] [2024-02-01T15:38:27.154Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/todo-3ce31 {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2024-02-01T15:38:27.155Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[error] 
+[error] Error: Assertion failed: resolving hosting target of a site with no site name or target name. This should have caused an error earlier
